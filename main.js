@@ -47,14 +47,19 @@ function createSelector(generosFiltrados) {
 }
 
 function filtrarPorGenero(listaPeliculas,genero){
-    const filtroDeGenero = listaPeliculas.filter(movie => movie.genres.includes(genero))
-    return filtroDeGenero
+    if (genero === "") {
+        return listaPeliculas;
+    }
+
+    const filtroDeGenero = listaPeliculas.filter(movie => movie.genres.includes(genero));
+    return filtroDeGenero;
+    
 }
 
 selec.addEventListener("input", () =>{
-    const opcion = selec.value
-    const filtroGenero = filtrarPorGenero(movies,opcion)
-    imprimirTemplate(filtroGenero,conteCards,createSelector)
+    const opcion = selec.value;
+    const filtroGenero = filtrarPorGenero(movies, opcion);
+    imprimirTemplate(filtroGenero, conteCards, crearCards);
     
 })
 imprimirTemplate(listaGeneros,selec,createSelector)
