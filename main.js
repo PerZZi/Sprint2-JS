@@ -31,7 +31,8 @@ const textoPeli = document.getElementById("textoGenero")
 
 textoPeli.addEventListener("keyup", () => {
     const filtroTitulo = filtrarPorNombre(movies, textoPeli.value)
-    imprimirTemplate(filtroTitulo,conteCards,crearCards)
+    const filtradoPorGenero = filtrarPorGenero( filtroTitulo, selec.value)
+    imprimirTemplate(filtradoPorGenero,conteCards,crearCards)
     console.log()
 });
 
@@ -57,13 +58,14 @@ function filtrarPorGenero(listaPeliculas,genero){
 }
 
 selec.addEventListener("input", () =>{
-    const opcion = selec.value;
-    const filtroGenero = filtrarPorGenero(movies, opcion);
-    imprimirTemplate(filtroGenero, conteCards, crearCards);
-    
+    const filtradoPorGenero = filtrarPorGenero( movies, selec.value) 
+    const filtroTitulo = filtrarPorNombre(filtradoPorGenero, textoPeli.value)
+    imprimirTemplate(filtroTitulo,conteCards,crearCards)
+    //se agrega el otro filtro para poder cruzarlos
 })
 imprimirTemplate(listaGeneros,selec,createSelector)
 
 console.log(listaGeneros)
+
 
 
